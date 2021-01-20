@@ -8,23 +8,19 @@
 			<i class="material-icons">&#xE894;</i>
 		</div>
 		<div class="card-content">
+			<h4 class="card-title">History</h4>
 			<div class="row">
 				<div class="col-md-5">
 					{% for rec in records %}
-
-
-
-					Game {{forloop.counter}}  : {{ rec.created|date:"dS F f a" }} <br>
-					Name : {{rec.name}}	<br> 
-					
-					{% for ques in quest %}
-						{% get_summary ques.id rec as response %}
-							Question:- {{ques}} <br>
-							Your Answers:- {{response.0}} <br> <br>
-					{% endfor %}
-					
-					<br> <br>
-					
+						Game {{forloop.counter}}  : {{ rec.created|date:"dS F f a" }} <br>
+						Name : {{rec.name}}	<br> 
+						
+						{% for ques in quest %}
+							{% get_summary ques.id rec as response %}
+								Question:- {{ques}} <br>
+								Your Answers:- {{response.0}} <br> <br>
+						{% endfor %}
+			
 					{% endfor %}
                 </div>
             </div>

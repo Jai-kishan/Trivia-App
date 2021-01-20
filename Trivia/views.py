@@ -22,6 +22,11 @@ def get_user_name(request):
 
 
 def welcome_user(request,name):
+    # ---------comments-----------------------------------------------------#
+    # Listing the Questions and their Choices
+    # Collecting the data from the User and string in the models 
+    # ------------------------ends here-------------------------------------#
+    
     quest = Question.objects.all()
     index = request.POST.get('index',0)
     nextt = int(index)+1
@@ -32,10 +37,9 @@ def welcome_user(request,name):
         question_over = False
         if len(quest) == int(index):
             question_over = True
-
         else:
             ques = quest[int(index)]
-
+            
         question    = request.POST.get('question')
         choice      = request.POST.getlist('choices')
         record,created      = GameReocrd.objects.get_or_create(name=user_profile)
