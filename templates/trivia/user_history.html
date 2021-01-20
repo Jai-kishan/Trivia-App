@@ -8,17 +8,11 @@
 			<i class="material-icons">&#xE894;</i>
 		</div>
 		<div class="card-content">
-			<!-- {% if question_over %}
-				<h4 class="card-title">Trivia Quiz</h4>
-			{%endif%}
-			{% if question_over %}
-				<h4 class="card-title">Summary</h4>
-			{%endif%} -->
 			<div class="row">
 				<div class="col-md-5">
 					Game1 : {{ records.created|date:"dS F f a" }} <br>
-					Name : {{records.name}}							
-					{{records.config}}
+					Name : {{records.name}}	<br>	
+					{% get_user_history records as response %}
 					 <br> <br>
                    
                 </div>

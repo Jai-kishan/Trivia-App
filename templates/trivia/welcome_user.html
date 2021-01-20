@@ -44,8 +44,8 @@
 							   {% for ques in quest %}
 							   {% get_summary ques.id summary as response %}
 								   Question:- {{ques}} <br>
-								   Your Answers:- {{response}} <br> <br>
-								   <!-- Correct Answers :- {{response.1}} <br> <br> -->
+								   Your Answers:- {{response.0}} <br> <br>
+								   Correct Answers :- {% for res in response.1 %} {{res}} {%endfor%} <br> <br>
 							   {% endfor %}
 						   {% endif %}					
 					</form>
