@@ -48,7 +48,7 @@ class BaseContent(models.Model):
 
 class Question(BaseContent):
     # ---------comments-----------------------------------------------------#
-    # 
+    # Store the all quiz questions
     # ------------------------ends here-------------------------------------#
     text = models.CharField(_('question text'), max_length=500)
     qtype = models.CharField(_('question type'), max_length=2, choices=QTYPE_CHOICES)
@@ -59,11 +59,13 @@ class Question(BaseContent):
 
 class Choice(BaseContent):
     # ---------comments-----------------------------------------------------#
-    # 
+    # We are stornig the choices are per given the questions
     # ------------------------ends here-------------------------------------#
     question = models.ForeignKey(Question, 
                                   on_delete=models.CASCADE, blank=True, null=True)
-    text = models.CharField(_('choice text'), max_length=500)   
+    text = models.CharField(_('choice text'), max_length=500)
+    is_correct = models.BooleanField(default=False)
+   
     
     def __str__(self):
         return "%s" % (self.text)
@@ -71,7 +73,7 @@ class Choice(BaseContent):
 
 class UserProfile(BaseContent):
     # ---------comments-----------------------------------------------------#
-    # 
+    # Collect the user name
     # ------------------------ends here-------------------------------------#
     name            = models.CharField(max_length=100)
     def __str__(self):

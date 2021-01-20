@@ -18,13 +18,34 @@ def get_summary(ques_id, summary):
 	res = ""
 	if ch:
 		choice = Choice.objects.filter(id__in=ch)
-		print(choice)
 		for c in range(len(choice)):
 			if len(choice) == 1:
 				res = res + choice[c].text
 			else:
 				if c == (len(choice)-1):
-					res = res + choice[c].text
+					res = res + choice[c].text			
 				else:
 					res = res + choice[c].text + "," 
 	return res
+
+
+@register.simple_tag
+def get_user_history(res):
+	data=[]
+	for ques_id in res.config:
+		ques = Question.objects.get(id = int(ques_id))
+		store = {'question':ques.text}
+		data.append(store)
+	print (data)
+	# if ch:
+	# 	choice = Choice.objects.filter(id__in=ch)
+	# 	print(choice)
+	# 	for c in range(len(choice)):
+	# 		if len(choice) == 1:
+	# 			res = res + choice[c].text
+	# 		else:
+	# 			if c == (len(choice)-1):
+	# 				res = res + choice[c].text
+	# 			else:
+	# 				res = res + choice[c].text + "," 
+	return data

@@ -6,6 +6,10 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Create your views here.
 
 def get_user_name(request):
+    # ---------comments-----------------------------------------------------#
+    # We created this function for getting the User name
+    # ------------------------ends here-------------------------------------#
+
     if request.method == "POST":
         form = EnterUserName(request.POST)
         name           = request.POST.get('name')
@@ -39,7 +43,12 @@ def welcome_user(request,name):
         record.save()
 
         if question_over == True:
-            summary = GameReocrd.objects.get(name = user_profile)         
+            summary = GameReocrd.objects.get(name = user_profile)
     else:
         ques = quest[int(index)]    
     return render(request, 'trivia/welcome_user.html', locals())
+
+def user_histroy(request,pk):
+    # import ipdb;ipdb.set_trace()
+    records = GameReocrd.objects.get(name__id = pk)
+    return render(request, 'trivia/user_history.html', locals())
