@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load common_tags %}
+
+<div class="col-md-10">
+	<div class="card">
+		<div class="card-header card-header-icon" data-background-color="green">
+			<i class="material-icons">&#xE894;</i>
+		</div>
+		<div class="card-content">
+			<h4 class="card-title">Summary</h4>
+			<div class="row">
+				<div class="col-md-5">
+
+					<form class="form" method="POST" action="." >
+						<input type="hidden" name="index", value="{{nextt}}">
+					   {% csrf_token %}
+				   
+					   {% if not question_over %}
+						<p>{{ques.text}}</p>
+						<input type="hidden" name="question", value="{{ques.id}}">
+						
+						{% get_choices ques as choices%}
+						   {% for c in choices%}
+							   {% if ques.qtype == "C"%}
+								   <input type="checkbox" id="" name="choices" value="{{c.id}}">
+								   {{c.text}} <br>
+							   {% else %}
+								   <input type="radio" id="" name="choices" value="{{c.id}}">
+								   {{c.text}} <br>
+							   {% endif %}
+						   {% endfor %}
+						   <button>Next</button>
+				   
+						   {% else %}
+							   <h4>Hello {{summary}}</h4>
+							   <p>Here are the answers selected:</p>
+							   {% for ques in quest %}
+							   {% get_summary ques.id summary as response %}
+								   Question:- {{ques}} <br>
+								   Answers:- {{response}} <br> <br>
+							   {% endfor %}
+						   {% endif %}					
+					</form>
+			{% if question_over %}	<button> <a href="{% url 'user_name' %}">Finish</a> 
+			</button>
+			{%endif%}
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
