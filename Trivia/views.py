@@ -49,6 +49,5 @@ def welcome_user(request,name):
     return render(request, 'trivia/welcome_user.html', locals())
 
 def user_histroy(request,pk):
-    # import ipdb;ipdb.set_trace()
     records = GameReocrd.objects.get(name__id = pk)
     return render(request, 'trivia/user_history.html', locals())
