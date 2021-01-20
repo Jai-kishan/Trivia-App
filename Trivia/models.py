@@ -82,7 +82,7 @@ class UserProfile(BaseContent):
 
 class GameReocrd(BaseContent):
     # ---------comments-----------------------------------------------------#
-    # 
+    # Storing the User and theri game records
     # ------------------------ends here-------------------------------------#
 
     name = models.ForeignKey(UserProfile, blank=True, null=True, on_delete=models.CASCADE)

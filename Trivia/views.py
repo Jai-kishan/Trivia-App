@@ -48,6 +48,14 @@ def welcome_user(request,name):
         ques = quest[int(index)]    
     return render(request, 'trivia/welcome_user.html', locals())
 
+
+
 def user_histroy(request,pk):
-    records = GameReocrd.objects.get(name__id = pk)
+    # ---------comments-----------------------------------------------------#
+    # We are getting the current user history like how many time 
+    # he played this game
+    # ------------------------ends here-------------------------------------#
+    quest = Question.objects.all()
+    records = GameReocrd.objects.filter(name__id = pk)
+    
     return render(request, 'trivia/user_history.html', locals())

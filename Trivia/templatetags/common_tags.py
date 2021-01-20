@@ -7,7 +7,6 @@ from django.utils.safestring import mark_safe
 
 @register.simple_tag
 def get_choices(ques):
-	
 	obj = Choice.objects.filter(question=ques,active=2)
 	return obj
 
@@ -35,14 +34,3 @@ def get_summary(ques_id, summary):
 				else:
 					res = res + choice[c].text + ",  "
 	return res,ans
-
-
-@register.simple_tag
-def get_user_history(res):
-	data= []
-	for ques_id,ch_id in res.config.items():
-		res = Choice.objects.filter(question__id =ques_id,id__in=ch_id)
-		for i in res:
-			data.append(i.question)
-			data.append(i.text)
-	return data
